@@ -20,7 +20,17 @@ bluetooth.onUartDataReceived(serial.delimiters(Delimiters.NewLine), function () 
             Kitronik_ACCESSbit.buzzerControl(Kitronik_ACCESSbit.BuzzerLength.Long, 1)
             basic.showIcon(IconNames.Sad)
         } else {
-            basic.showString(texte)
+            if (texte.includes("auto")) {
+                Kitronik_ACCESSbit.barrierControl(Kitronik_ACCESSbit.BarrierPosition.Up)
+                Kitronik_ACCESSbit.buzzerControl(Kitronik_ACCESSbit.BuzzerLength.Short, 2)
+                basic.showIcon(IconNames.Happy)
+                basic.pause(3000)
+                Kitronik_ACCESSbit.barrierControl(Kitronik_ACCESSbit.BarrierPosition.Down)
+                Kitronik_ACCESSbit.buzzerControl(Kitronik_ACCESSbit.BuzzerLength.Long, 1)
+                basic.showIcon(IconNames.Sad)
+            } else {
+            	
+            }
         }
     }
 })
